@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil & Hobi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Website Hobi Saya</h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#hobi">Hobi</a>
+    <a href="#kategori">Kategori</a>
+</nav>
+
+<div class="container">
+
+    <!-- Main / Home -->
+    <section id="home" class="card">
+        <h2>Main (Utama)</h2>
+        <p>Selamat datang di website sederhana saya. Ini adalah halaman utama yang berisi informasi tentang hobi dan kategori.</p>
+    </section>
+
+    <!-- Hobi -->
+    <section id="hobi" class="card">
+        <h2>Hobi</h2>
+        <ul>
+            <li>Membaca buku</li>
+            <li>Mendengarkan musik</li>
+            <li>Traveling</li>
+            <li>Olahraga</li>
+        </ul>
+    </section>
+
+    <!-- Kategori -->
+    <section id="kategori" class="card">
+        <h2>Kategori</h2>
+        <ul>
+            <li>Edukasi</li>
+            <li>Hiburan</li>
+            <li>Kesehatan</li>
+            <li>Teknologi</li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Website Saya</p>
+</footer>
+
+</body>
+</html>
