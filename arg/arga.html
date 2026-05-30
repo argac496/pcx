@@ -3,142 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Nomor Absen Kelas</title>
-    <!-- Menggunakan Tailwind CSS untuk desain yang bagus dan responsif -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Video Orang Random</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e24;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .video-container {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #000;
+            max-width: 90%;
+        }
+
+        video {
+            display: block;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans min-h-screen pb-12">
+<body>
 
-    <!-- Header / Navbar -->
-    <header class="bg-blue-600 text-white shadow-md p-6 mb-8 text-center">
-        <h1 class="text-3xl font-bold tracking-wide">📋 Daftar & Nomor Absen Kelas</h1>
-        <p class="text-blue-100 mt-2">Kelola kehadiran siswa dengan mudah dan cepat</p>
-    </header>
+    <h2>Video Orang Random</h2>
 
-    <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-4">
-        
-        <!-- Fitur Pencarian & Info Ringkas -->
-        <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
-            <div class="w-full md:w-1/2">
-                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Cari Siswa (Nama / No. Absen):</label>
-                <input type="text" id="search" onkeyup="cariSiswa()" placeholder="Ketik nomor atau nama..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            </div>
-            <div class="flex gap-4 text-center">
-                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-md font-semibold">
-                    Hadir: <span id="count-hadir">0</span>
-                </div>
-                <div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-md font-semibold">
-                    Izin: <span id="count-izin">0</span>
-                </div>
-                <div class="bg-red-100 text-red-800 px-4 py-2 rounded-md font-semibold">
-                    Alpa: <span id="count-alpa">0</span>
-                </div>
-            </div>
-        </div>
+    <div class="video-container">
+        <!-- Menggunakan sampel video publik dari pexels untuk demo -->
+        <video width="640" height="360" controls autoplay loop muted>
+            <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0ee27ad9e82310684cca321117afae0&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+            Browser kamu tidak mendukung tag video HTML5.
+        </video>
+    </div>
 
-        <!-- Tabel Absen -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-gray-800 text-white uppercase text-sm tracking-wider">
-                        <th class="py-3 px-6 text-center w-24">No. Absen</th>
-                        <th class="py-3 px-6">Nama Siswa</th>
-                        <th class="py-3 px-6 text-center w-64">Status Kehadiran</th>
-                    </tr>
-                </thead>
-                <tbody id="daftar-absen" class="divide-y divide-gray-200">
-                    <!-- Data siswa akan di-render oleh JavaScript di bawah -->
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <!-- JavaScript untuk logika website -->
-    <script>
-        // Data Contoh Siswa (Bisa kamu ubah, tambah, atau kurangi namanya di sini)
-        const dataSiswa = [
-            { no: 1, nama: "Achmad Fauzi", status: "" },
-            { no: 2, nama: "Budi Santoso", status: "" },
-            { no: 3, nama: "Citra Lestari", status: "" },
-            { no: 4, nama: "Dedi Wijaya", status: "" },
-            { no: 5, nama: "Eka Putri", status: "" },
-            { no: 6, nama: "Farhan Permana", status: "" },
-            { no: 7, nama: "Gita Gutawa", status: "" },
-            { no: 8, nama: "Hendra Setiawan", status: "" },
-            { no: 9, nama: "Indah Permatasari", status: "" },
-            { no: 10, nama: "Joko Widodo", status: "" }
-        ];
-
-        // Fungsi untuk menampilkan data ke tabel
-        function renderTabel() {
-            const tbody = document.getElementById('daftar-absen');
-            tbody.innerHTML = "";
-
-            dataSiswa.forEach((siswa, index) => {
-                // Menentukan warna background tombol berdasarkan status
-                const btnHadir = siswa.status === 'Hadir' ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-green-100';
-                const btnIzin = siswa.status === 'Izin' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-yellow-100';
-                const btnAlpa = siswa.status === 'Alpa' ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-red-100';
-
-                tbody.innerHTML += `
-                    <tr class="hover:bg-gray-50 baris-siswa" data-nama="${siswa.nama.toLowerCase()}" data-no="${siswa.no}">
-                        <td class="py-4 px-6 text-center font-bold text-gray-700 bg-gray-50">${siswa.no}</td>
-                        <td class="py-4 px-6 font-medium text-gray-800">${siswa.nama}</td>
-                        <td class="py-4 px-6 text-center">
-                            <div class="inline-flex rounded-md shadow-sm" role="group">
-                                <button onclick="setAbsen(${index}, 'Hadir')" class="px-3 py-1.5 text-xs font-semibold rounded-l-md transition-colors ${btnHadir}">Hadir</button>
-                                <button onclick="setAbsen(${index}, 'Izin')" class="px-3 py-1.5 text-xs font-semibold transition-colors ${btnIzin}">Izin</button>
-                                <button onclick="setAbsen(${index}, 'Alpa')" class="px-3 py-1.5 text-xs font-semibold rounded-r-md transition-colors ${btnAlpa}">Alpa</button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            });
-            updateRekap();
-        }
-
-        // Fungsi untuk mengubah status absen siswa
-        function setAbsen(index, status) {
-            // Jika diklik status yang sama, maka batalkan (reset kosong)
-            if (dataSiswa[index].status === status) {
-                dataSiswa[index].status = "";
-            } else {
-                dataSiswa[index].status = status;
-            }
-            renderTabel();
-        }
-
-        // Fungsi untuk menghitung jumlah rekap Hadir, Izin, Alpa
-        function updateRekap() {
-            const hadir = dataSiswa.filter(s => s.status === 'Hadir').length;
-            const izin = dataSiswa.filter(s => s.status === 'Izin').length;
-            const alpa = dataSiswa.filter(s => s.status === 'Alpa').length;
-
-            document.getElementById('count-hadir').innerText = hadir;
-            document.getElementById('count-izin').innerText = izin;
-            document.getElementById('count-alpa').innerText = alpa;
-        }
-
-        // Fungsi Fitur Pencarian
-        function cariSiswa() {
-            const input = document.getElementById('search').value.toLowerCase();
-            const rows = document.querySelectorAll('.baris-siswa');
-
-            rows.forEach(row => {
-                const nama = row.getAttribute('data-nama');
-                const no = row.getAttribute('data-no');
-                
-                if (nama.includes(input) || no.includes(input)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
-
-        // Jalankan fungsi render saat pertama kali web dibuka
-        renderTabel();
-    </script>
 </body>
 </html>
